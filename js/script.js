@@ -34,12 +34,43 @@ function getUserInput(){
     return input.toLowerCase();
 }
 
-const playerSelection = getUserInput();
-const computerSelection = getComputerChoice().toLowerCase();
 
-console.log(playRound(playerSelection,computerSelection));
+// console.log(playRound(playerSelection,computerSelection));
+
 
 // Make functions case insensitive
 
 // Write a new function called playGame().Use previous function inside of this to play a five round game that keeps score and reports a winner or loser at the end.
+function playGame(numberOfRounds = 1){
+    let userScore = 0;
+    let computerScore = 0;
+
+    for (let index = 0; index < numberOfRounds; index++) {
+        let playerSelection = getUserInput();
+        let computerSelection = getComputerChoice().toLowerCase();
+
+        let gameResult = playRound(playerSelection,computerSelection);
+
+        if(gameResult.includes("win")){
+            console.log(`You won round number ${index+1}`);
+            userScore += 3;
+        }else if(gameResult.includes("lose")){
+            console.log(`You lost round number ${index+1}`);
+            computerScore +=3;
+        }else{
+            console.log(`You drew round number ${index+1}`);
+            userScore +=1;
+            computerScore +=1;
+        }
+    }
+
+    if(userScore === computerScore){
+        return `You draw! ${userScore} - ${computerScore}`;
+    }else if(userScore > computerScore){
+        return `You won! ${userScore} - ${computerScore}`;
+    }else{
+        return `You lost! ${userScore} - ${computerScore}`;
+    }
+}
+console.log(playGame(5));
 // Use prompt to get user's input
