@@ -72,5 +72,35 @@ function playGame(numberOfRounds = 1){
         return `You lost! ${userScore} - ${computerScore}`;
     }
 }
-console.log(playGame(5));
+// console.log(playGame(5));
 // Use prompt to get user's input
+
+// Single Game Function
+function singleGame(playerSelection){
+    let computerSelection = getComputerChoice().toLowerCase();
+
+    let gameResult = playRound(playerSelection,computerSelection);
+
+    const resultPara = document.createElement("p");
+    resultPara.textContent = gameResult;
+
+    const resultDiv = document.querySelector("#results");
+
+    resultDiv.appendChild(resultPara);
+}
+// Load buttons
+const rockBtn = document.querySelector("#rock");
+const scissorBtn = document.querySelector("#scissors");
+const paperBtn = document.querySelector("#paper");
+
+rockBtn.addEventListener("click",()=>{
+    singleGame("rock");
+});
+
+scissorBtn.addEventListener("click",()=>{
+    singleGame("scissors");
+});
+
+paperBtn.addEventListener("click",()=>{
+    singleGame("paper");
+});
